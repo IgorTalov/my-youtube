@@ -15,7 +15,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        let layout = UICollectionViewFlowLayout()
+        let vc = HomeController(collectionViewLayout: layout)
+        let navBar = UINavigationController(rootViewController: vc)
+        
+        window?.rootViewController = navBar
+        
+        UINavigationBar.appearance().barTintColor = UIColor.red
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        
+        application.statusBarStyle = .lightContent
+        
+        let statusBarBackgroundView = UIView()
+        statusBarBackgroundView.backgroundColor = UIColor.rgbColor(red: 194, green: 31, blue: 31)
+        
+        window?.addSubview(statusBarBackgroundView)
+        window?.addConstraintsWithFormat(format: "H:|[v0]|", views: statusBarBackgroundView)
+        window?.addConstraintsWithFormat(format: "V:|[v0(20)]", views: statusBarBackgroundView)
+        
         return true
     }
 
@@ -40,7 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 

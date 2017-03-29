@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE1589B31E8C667100BF57D0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1589B21E8C667100BF57D0 /* Extensions.swift */; };
+		EE1589B91E8C671900BF57D0 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1589B81E8C671900BF57D0 /* VideoCell.swift */; };
+		EE1589BB1E8C687800BF57D0 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1589BA1E8C687800BF57D0 /* MenuBar.swift */; };
 		EEE8427F1E884FD6002861F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8427E1E884FD6002861F3 /* AppDelegate.swift */; };
 		EEE842811E884FD6002861F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE842801E884FD6002861F3 /* ViewController.swift */; };
 		EEE842841E884FD6002861F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEE842821E884FD6002861F3 /* Main.storyboard */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE1589B21E8C667100BF57D0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EE1589B81E8C671900BF57D0 /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		EE1589BA1E8C687800BF57D0 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		EEE8427B1E884FD6002861F3 /* youTubeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = youTubeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEE8427E1E884FD6002861F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEE842801E884FD6002861F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +41,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE1589B11E8C665D00BF57D0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EE1589B21E8C667100BF57D0 /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		EE1589B41E8C66EC00BF57D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE1589B81E8C671900BF57D0 /* VideoCell.swift */,
+				EE1589BA1E8C687800BF57D0 /* MenuBar.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		EE1589B51E8C66F500BF57D0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		EE1589B71E8C670400BF57D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		EEE842721E884FD6002861F3 = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +91,10 @@
 		EEE8427D1E884FD6002861F3 /* youTubeTest */ = {
 			isa = PBXGroup;
 			children = (
+				EE1589B71E8C670400BF57D0 /* Model */,
+				EE1589B51E8C66F500BF57D0 /* Controllers */,
+				EE1589B41E8C66EC00BF57D0 /* View */,
+				EE1589B11E8C665D00BF57D0 /* Extensions */,
 				EEE8427E1E884FD6002861F3 /* AppDelegate.swift */,
 				EEE842801E884FD6002861F3 /* ViewController.swift */,
 				EEE842821E884FD6002861F3 /* Main.storyboard */,
@@ -96,7 +137,7 @@
 				TargetAttributes = {
 					EEE8427A1E884FD6002861F3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GU388YC6S7;
+						DevelopmentTeam = WJ2494P78F;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -138,7 +179,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEE842811E884FD6002861F3 /* ViewController.swift in Sources */,
+				EE1589B91E8C671900BF57D0 /* VideoCell.swift in Sources */,
+				EE1589B31E8C667100BF57D0 /* Extensions.swift in Sources */,
 				EEE8427F1E884FD6002861F3 /* AppDelegate.swift in Sources */,
+				EE1589BB1E8C687800BF57D0 /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,8 +305,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GU388YC6S7;
+				DEVELOPMENT_TEAM = WJ2494P78F;
 				INFOPLIST_FILE = youTubeTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SealDev.youTubeTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -274,8 +319,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GU388YC6S7;
+				DEVELOPMENT_TEAM = WJ2494P78F;
 				INFOPLIST_FILE = youTubeTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SealDev.youTubeTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -302,6 +348,7 @@
 				EEE8428F1E884FD6002861F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
