@@ -10,6 +10,7 @@
 		EE1589B31E8C667100BF57D0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1589B21E8C667100BF57D0 /* Extensions.swift */; };
 		EE1589B91E8C671900BF57D0 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1589B81E8C671900BF57D0 /* VideoCell.swift */; };
 		EE1589BB1E8C687800BF57D0 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1589BA1E8C687800BF57D0 /* MenuBar.swift */; };
+		EE26B6C91E92F2DF008ED816 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE26B6C81E92F2DF008ED816 /* Video.swift */; };
 		EEE8427F1E884FD6002861F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8427E1E884FD6002861F3 /* AppDelegate.swift */; };
 		EEE842811E884FD6002861F3 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE842801E884FD6002861F3 /* HomeController.swift */; };
 		EEE842841E884FD6002861F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEE842821E884FD6002861F3 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		EE1589B21E8C667100BF57D0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EE1589B81E8C671900BF57D0 /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		EE1589BA1E8C687800BF57D0 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		EE26B6C81E92F2DF008ED816 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		EEE8427B1E884FD6002861F3 /* youTubeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = youTubeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEE8427E1E884FD6002861F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEE842801E884FD6002861F3 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		EE1589B71E8C670400BF57D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EE26B6C81E92F2DF008ED816 /* Video.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEE842811E884FD6002861F3 /* HomeController.swift in Sources */,
+				EE26B6C91E92F2DF008ED816 /* Video.swift in Sources */,
 				EE1589B91E8C671900BF57D0 /* VideoCell.swift in Sources */,
 				EE1589B31E8C667100BF57D0 /* Extensions.swift in Sources */,
 				EEE8427F1E884FD6002861F3 /* AppDelegate.swift in Sources */,

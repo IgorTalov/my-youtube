@@ -17,6 +17,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return menu
     }()
     
+    var videos: [Video] = {
+        var blankSpaceVideo = Video()
+//        blankSpaceVideo.thumblnailImageName =
+        blankSpaceVideo.title = "Taylor Swift - Blank Space"
+        blankSpaceVideo.thumblnailImageName = "taylor_swift_blank_space"
+        
+        return [blankSpaceVideo]
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
@@ -32,6 +41,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
         
         setupMenuBar()
+        setupBarButtons()
     }
 
     private func setupMenuBar() {
@@ -40,15 +50,32 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
     }
     
+    private func setupBarButtons() {
+        let searchImage = UIImage(named: "search_icon")?.withRenderingMode(.alwaysOriginal)
+        let moreImage = UIImage(named: "nav_more_icon")?.withRenderingMode(.alwaysOriginal)
+        let searchButton = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
+        let moreBarButtonItem = UIBarButtonItem(image: moreImage, style: .plain, target: self, action: #selector(handleMore))
+        self.navigationItem.rightBarButtonItems = [moreBarButtonItem, searchButton]
+    }
+    
+    func handleSearch() {
+        print("Search")
+    }
+    
+    func handleMore () {
+        print("handle More")
+    }
     //MARK: CollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return videos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! VideoCell
+        
+        cell.video = videos[indexPath.item]
         
         return cell
     }

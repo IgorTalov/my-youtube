@@ -10,6 +10,8 @@ import UIKit
 
 class VideoCell: UICollectionViewCell {
     
+    var video: Video?
+    
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.blue
