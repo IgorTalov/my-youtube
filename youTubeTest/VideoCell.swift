@@ -13,12 +13,10 @@ class VideoCell: UICollectionViewCell {
     var video: Video? {
         didSet {
             titleLabel.text = video?.title
-            thumbnailImageView.image = UIImage(named: (video?.thumblnailImageName)!)
             
-            if let profileImageNamed = video?.channel?.profileImageNamed {
-                userProfileImageView.image = UIImage(named: profileImageNamed)
-            }
-            
+            setupThumblImage()
+            setupUserProfileImageView()
+
             if let channelName = video?.channel?.name, let numberOfViews = video?.numberOfviews {
                 
                 let numberFormatter = NumberFormatter()
@@ -39,26 +37,23 @@ class VideoCell: UICollectionViewCell {
                 } else {
                     titleLabelHeightConstraint?.constant = 20
                 }
-                
             }
-            
         }
     }
     
-    let thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
+    let thumbnailImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.image = UIImage(named: "taylor_swift_blank_space")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         return imageView
     }()
     
-    let userProfileImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.green
+    let userProfileImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.image = UIImage(named: "taylor_swift_profile")
         imageView.layer.cornerRadius = 22
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         return imageView
     }()
@@ -92,6 +87,18 @@ class VideoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+    }
+    
+    func setupThumblImage() {
+        if let thumbImageUrl = video?.thumblnailImageName {
+           self.thumbnailImageView.loadImageUsingUrlString(urlString: thumbImageUrl)
+        }
+    }
+    
+    func setupUserProfileImageView() {
+        if let profileImageURL = video?.channel?.profileImageNamed {
+            self.userProfileImageView.loadImageUsingUrlString(urlString: profileImageURL)
+        }
     }
     
     func setupViews() {
