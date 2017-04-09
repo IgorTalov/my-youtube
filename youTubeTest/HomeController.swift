@@ -17,31 +17,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return menu
     }()
     
-//    var videos: [Video] = {
-//        
-//        var kanneyChannel = Channel()
-//        kanneyChannel.name = "KanneyIsTheBestChannel"
-//        kanneyChannel.profileImageNamed = "kanye_profile"
-//        
-////        var taylor
-//        
-//        var blankSpaceVideo = Video()
-//        blankSpaceVideo.title = "Taylor Swift - Blank Space"
-//        blankSpaceVideo.thumblnailImageName = "taylor_swift_blank_space"
-//        blankSpaceVideo.channel = kanneyChannel
-//        blankSpaceVideo.numberOfviews = 1254632
-//        
-//        var badBlood = Video()
-//        badBlood.title = "Taylor Swift - Bad Blood feat. Kendrick Lamar"
-//        badBlood.thumblnailImageName = "taylor_swift_bad_blood"
-//        badBlood.channel = kanneyChannel
-//        badBlood.numberOfviews = 3545864
-//        
-//        return [blankSpaceVideo, badBlood]
-//    }()
-    
     var videos: [Video]?
     
+    let settingLauncher = SettingsLauncher()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +62,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func handleMore () {
         print("handle More")
+    
+        settingLauncher.showSettings()
     }
+    
+    
+    
     
     func fetchVideos() {
         let url = NSURL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
