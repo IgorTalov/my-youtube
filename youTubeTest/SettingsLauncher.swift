@@ -8,14 +8,32 @@
 
 import UIKit
 
-class SettingsLauncher: NSObject {
+class Setting: NSObject {
+    
+    let name: String
+    let imageName: String
+    
+    init(name: String, imageName: String) {
+        self.name = name
+        self.imageName = imageName
+    }
+}
+
+class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let blackView = UIView()
+    
+    let cellId = "Cell"
+    
+    let settings: [Setting] = {
+//        let sett = Setting(name: "Settings", imageName: "settings")
+        return [Setting(name: "Settings", imageName: "settings")]
+    }()
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor.yellow
+        cv.backgroundColor = UIColor.white
         return cv
     }()
     
@@ -57,11 +75,33 @@ class SettingsLauncher: NSObject {
     override init() {
         super.init()
         
-        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(SettingCell.self, forCellWithReuseIdentifier: cellId)
     }
     
+    //MARK: UICollectionViewDataSource
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return settings.count
+    }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SettingCell
+        let setting = settings[indexPath.item]
+        cell.setting = setting
+        
+        return cell
+    }
     
+    //MARK: UICollectionViewDelegateFlowLayout
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 50)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
 }

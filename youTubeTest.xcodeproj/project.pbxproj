@@ -12,6 +12,7 @@
 		EE1589BB1E8C687800BF57D0 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1589BA1E8C687800BF57D0 /* MenuBar.swift */; };
 		EE26B6C91E92F2DF008ED816 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE26B6C81E92F2DF008ED816 /* Video.swift */; };
 		EE8DA31E1E9AE30600B4C5B3 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DA31D1E9AE30600B4C5B3 /* SettingsLauncher.swift */; };
+		EE8DA3201E9D931100B4C5B3 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DA31F1E9D931100B4C5B3 /* SettingCell.swift */; };
 		EEE8427F1E884FD6002861F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8427E1E884FD6002861F3 /* AppDelegate.swift */; };
 		EEE842811E884FD6002861F3 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE842801E884FD6002861F3 /* HomeController.swift */; };
 		EEE842841E884FD6002861F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEE842821E884FD6002861F3 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		EE1589BA1E8C687800BF57D0 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		EE26B6C81E92F2DF008ED816 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		EE8DA31D1E9AE30600B4C5B3 /* SettingsLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
+		EE8DA31F1E9D931100B4C5B3 /* SettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		EEE8427B1E884FD6002861F3 /* youTubeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = youTubeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEE8427E1E884FD6002861F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEE842801E884FD6002861F3 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				EE1589B81E8C671900BF57D0 /* VideoCell.swift */,
 				EE1589BA1E8C687800BF57D0 /* MenuBar.swift */,
+				EE8DA31F1E9D931100B4C5B3 /* SettingCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			files = (
 				EEE842811E884FD6002861F3 /* HomeController.swift in Sources */,
 				EE26B6C91E92F2DF008ED816 /* Video.swift in Sources */,
+				EE8DA3201E9D931100B4C5B3 /* SettingCell.swift in Sources */,
 				EE1589B91E8C671900BF57D0 /* VideoCell.swift in Sources */,
 				EE8DA31E1E9AE30600B4C5B3 /* SettingsLauncher.swift in Sources */,
 				EE1589B31E8C667100BF57D0 /* Extensions.swift in Sources */,
