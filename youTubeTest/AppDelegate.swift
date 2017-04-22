@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .horizontal
         let vc = HomeController(collectionViewLayout: layout)
         let navBar = UINavigationController(rootViewController: vc)
         
