@@ -22,6 +22,8 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     let cellID = "cellID"
     let imageNamesArray: NSArray = ["home", "trending", "subscriptions", "account"]
     
+    var horizontalBarLeftConstraint: NSLayoutConstraint?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -33,11 +35,32 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         let selectedIndexPath = NSIndexPath(row: 0, section: 0)
         collectionView.selectItem(at: selectedIndexPath as IndexPath, animated: false, scrollPosition: .top)
-        backgroundColor = UIColor.red
+        
+        setupHorizontalBar()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func setupHorizontalBar() {
+        
+        let horizontalBarView = UIView()
+        horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
+        horizontalBarView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        addSubview(horizontalBarView)
+        
+        //new school way of laying out of views
+        //in ios 9
+        //need x, y, width, height
+        
+        horizontalBarLeftConstraint = horizontalBarView.leftAnchor.constraint(equalTo: self.leftAnchor)
+        horizontalBarLeftConstraint?.isActive = true
+        horizontalBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        horizontalBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
+        horizontalBarView.heightAnchor.constraint(equalToConstant: 4).isActive = true
     }
     
     //MARK: UICollectionViewDataSource
@@ -55,6 +78,19 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     //MARK: UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.item)
+        
+        let x = CGFloat(indexPath.item) * frame.width / 4
+        
+        self.horizontalBarLeftConstraint?.constant = x
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.layoutIfNeeded()
+        }, completion: nil)
+        
+    }
     
     //MARK: UICollectionViewDelegateFlowLayout
     
