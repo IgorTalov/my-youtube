@@ -19,7 +19,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     var videos: [Video]?
     
-    let settingLauncher = SettingsLauncher()
+    lazy var settingLauncher: SettingsLauncher = {
+        let launcher = SettingsLauncher()
+        launcher.homeController = self
+        return launcher
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,13 +65,18 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func handleMore () {
-        print("handle More")
-    
         settingLauncher.showSettings()
     }
     
-    
-    
+    func showSettingsControllerForSetting(setting: Setting) {
+
+        let dummySettingsController = UIViewController()
+        dummySettingsController.navigationItem.title = setting.name.rawValue
+        dummySettingsController.view.backgroundColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        navigationController?.pushViewController(dummySettingsController, animated: true)
+    }
     
     func fetchVideos() {
         let url = NSURL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
