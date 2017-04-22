@@ -25,9 +25,10 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
     
     let cellId = "Cell"
     
+    let cellHeght: CGFloat = 50
+    
     let settings: [Setting] = {
-//        let sett = Setting(name: "Settings", imageName: "settings")
-        return [Setting(name: "Settings", imageName: "settings")]
+        return [Setting(name: "Settings", imageName: "settings"),Setting(name: "Terms & privacy policy", imageName: "privacy"),Setting(name: "Send Feedback", imageName: "feedback"),Setting(name: "Help", imageName: "help"),Setting(name: "Switch Account", imageName: "switch_account"),Setting(name: "Cancel", imageName: "cancel")]
     }()
     
     let collectionView: UICollectionView = {
@@ -45,10 +46,11 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
             window.addSubview(blackView)
             window.addSubview(collectionView)
             
-            let height: CGFloat = 200
+//            let height: CGFloat = 200
+            let height: CGFloat = CGFloat(settings.count) * cellHeght
             let y = window.frame.height - height
         
-            collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: 200)
+            collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
 
             blackView.frame = window.frame
             blackView.alpha = 0
@@ -95,10 +97,25 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     
+    //MARK: UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0
+            
+            if let window = UIApplication.shared.keyWindow {
+                self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+            }
+        }) { (complition) in
+            
+        }
+    }
+    
     //MARK: UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 50)
+        return CGSize(width: collectionView.frame.width, height: cellHeght)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
