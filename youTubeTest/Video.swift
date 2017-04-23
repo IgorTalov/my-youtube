@@ -50,8 +50,6 @@ class Video: SafeJSONObject {
         
         self.setValuesForKeys(dictinary)
     }
-    
-
 
 }
 

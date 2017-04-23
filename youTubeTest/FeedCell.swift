@@ -56,7 +56,6 @@ class FeedCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return videos?.count ?? 0
-//        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,6 +65,15 @@ class FeedCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         cell.video = videos?[indexPath.item]
 
         return cell
+    }
+    
+    //MARK: UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(123456)
+        
+        let videoLauncher = VideoLauncher()
+        videoLauncher.showVideoPlayer()
     }
     
     //MARK: UICollectionViewDelegateFlowLayout
