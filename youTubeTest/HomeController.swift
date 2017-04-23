@@ -11,6 +11,8 @@ import UIKit
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout  {
 
     private var cellID = "Cell"
+    private var trandingCellID = "trandingCellID"
+    
     
     let titles = ["Home", "Trending", "Subscriptions", "Account"]
     
@@ -50,6 +52,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trandingCellID)
         collectionView?.isPagingEnabled = true
     }
     
@@ -81,9 +84,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let indexPath = NSIndexPath(item: Int(index), section: 0)
         menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: true, scrollPosition: UICollectionViewScrollPosition(rawValue: 0))
         
-        if let titleLabel = navigationItem.titleView as? UILabel  {
-            titleLabel.text = "  \(titles[Int(index)])"
-        }
+        setupTitleForIndex(index: Int(index))
+        
     }
     
     private func setupBarButtons() {
@@ -101,8 +103,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func scrollToMenuIndex(menuIndex: Int) {
         let indexPath = NSIndexPath(item: menuIndex, section: 0)
         collectionView?.scrollToItem(at: indexPath as IndexPath, at: UICollectionViewScrollPosition(rawValue: 0) , animated: true)
+        setupTitleForIndex(index: menuIndex)
     }
     
+    private func setupTitleForIndex(index: Int) {
+        if let titleLabel = navigationItem.titleView as? UILabel  {
+            titleLabel.text = "  \(titles[Int(index)])"
+        }
+    }
     
     func handleMore () {
         settingLauncher.showSettings()
@@ -125,6 +133,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.item == 1 {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: trandingCellID, for: indexPath)
+        }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! FeedCell
         
