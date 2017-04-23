@@ -8,6 +8,14 @@
 
 import UIKit
 
+extension String {
+    var firstCharacterUppercased: String {
+        guard case let c = self.characters,
+            let c1 = c.first else { return self }
+        return String(c1).uppercased() + String(c.dropFirst())
+    }
+}
+
 extension UIColor {
     static func rgbColor(red:CGFloat, green:CGFloat, blue:CGFloat) -> UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)

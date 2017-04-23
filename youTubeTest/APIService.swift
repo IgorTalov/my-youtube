@@ -12,54 +12,29 @@ class APIService: NSObject {
     
     static let sharedInstance = APIService()
     
+    let baseUrl = "https://s3-us-west-2.amazonaws.com/youtubeassets"
+    
     func fetchVideos(complition: @escaping ([Video]) -> ()) {
-        let url = NSURL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
-        let request = URLRequest(url: url as! URL)
-        let session = URLSession.shared
-        
-        let dataTask = session.dataTask(with: request) { (data, response, error) in
-            
-            if error != nil {
-                print("error - \(error)")
-                return
-            } else {
-                //So smth
-            }
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-                
-                var videos = [Video]()
-                
-                for dictinary in json as! [[String: AnyObject]] {
-                    
-                    let video = Video()
-                    video.title = dictinary["title"] as? String
-                    video.thumblnailImageName = dictinary["thumbnail_image_name"] as! String?
-                    
-                    let channelDic = dictinary["channel"] as! [String: AnyObject]
-                    
-                    let channel = Channel()
-                    channel.name = channelDic["name"] as? String
-                    channel.profileImageNamed = channelDic["profile_image_name"] as? String
-                    
-                    video.channel = channel
-                    
-                    videos.append(video)
-                }
-                
-                DispatchQueue.main.async {
-                    complition(videos)
-                }
-            } catch let jsonError {
-                print(jsonError)
-            }
+        fetchFeedForUrlString(urlString: "\(baseUrl)/home.json") { (videos) in
+            complition(videos)
         }
-        dataTask.resume()
     }
 
     func fetchTrendingFeed(complition: @escaping ([Video]) -> ()) {
-        let url = NSURL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/trending.json")
+        fetchFeedForUrlString(urlString: "\(baseUrl)/trending.json") { (videos) in
+            complition(videos)
+        }
+    }
+
+    func fetchSubscriptionFeed(complition: @escaping ([Video]) -> ()) {
+        fetchFeedForUrlString(urlString: "\(baseUrl)/subscriptions.json") { (videos) in
+            complition(videos)
+        }
+    }
+    
+    private func fetchFeedForUrlString(urlString: String,  complition: @escaping ([Video]) -> ()) {
+    
+        let url = NSURL(string: urlString)
         let request = URLRequest(url: url as! URL)
         let session = URLSession.shared
         
@@ -73,36 +48,27 @@ class APIService: NSObject {
             }
             
             do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-                
-                var videos = [Video]()
-                
-                for dictinary in json as! [[String: AnyObject]] {
-                    
-                    let video = Video()
-                    video.title = dictinary["title"] as? String
-                    video.thumblnailImageName = dictinary["thumbnail_image_name"] as! String?
-                    
-                    let channelDic = dictinary["channel"] as! [String: AnyObject]
-                    
-                    let channel = Channel()
-                    channel.name = channelDic["name"] as? String
-                    channel.profileImageNamed = channelDic["profile_image_name"] as? String
-                    
-                    video.channel = channel
-                    
-                    videos.append(video)
+                if let unwrappedData = data {
+                    if let jsonDictinaries = try JSONSerialization.jsonObject(with: unwrappedData, options: .mutableContainers) as? [[String : AnyObject]] {
+                       var videos = [Video]()
+                        
+                        for dictinary in jsonDictinaries {
+                            let video = Video(dictinary: dictinary)
+                            videos.append(video)
+                        }
+ 
+                        DispatchQueue.main.async {
+                            complition(videos)
+                        }
+                    }
                 }
+
                 
-                DispatchQueue.main.async {
-                    complition(videos)
-                }
             } catch let jsonError {
                 print(jsonError)
             }
         }
         dataTask.resume()
     }
-
     
 }

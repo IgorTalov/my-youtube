@@ -17,7 +17,7 @@ class VideoCell: UICollectionViewCell {
             setupThumblImage()
             setupUserProfileImageView()
 
-            if let channelName = video?.channel?.name, let numberOfViews = video?.numberOfviews {
+            if let channelName = video?.channel?.name, let numberOfViews = video?.number_of_views {
                 
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
@@ -90,13 +90,13 @@ class VideoCell: UICollectionViewCell {
     }
     
     func setupThumblImage() {
-        if let thumbImageUrl = video?.thumblnailImageName {
+        if let thumbImageUrl = video?.thumbnail_image_name {
            self.thumbnailImageView.loadImageUsingUrlString(urlString: thumbImageUrl)
         }
     }
     
     func setupUserProfileImageView() {
-        if let profileImageURL = video?.channel?.profileImageNamed {
+        if let profileImageURL = video?.channel?.profile_image_name {
             self.userProfileImageView.loadImageUsingUrlString(urlString: profileImageURL)
         }
     }

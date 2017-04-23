@@ -12,7 +12,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     private var cellID = "Cell"
     private var trandingCellID = "trandingCellID"
-    
+    private let subscriptionCellID = "subscriptionID"
     
     let titles = ["Home", "Trending", "Subscriptions", "Account"]
     
@@ -53,6 +53,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellID)
         collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trandingCellID)
+        collectionView?.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellID)
         collectionView?.isPagingEnabled = true
     }
     
@@ -134,11 +135,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let identifier: String
+
+        
+        
         if indexPath.item == 1 {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: trandingCellID, for: indexPath)
+            identifier = trandingCellID
+        } else if indexPath.item == 2 {
+            identifier = subscriptionCellID
+        } else {
+            identifier = cellID
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! FeedCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         
         return cell
     }
