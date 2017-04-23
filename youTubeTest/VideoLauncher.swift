@@ -47,13 +47,13 @@ class VideoPlayerView: UIView {
         return label
      }()
     
-    let videoSlider: UISlider = {
+    lazy var videoSlider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
         slider.minimumTrackTintColor = UIColor.red
         slider.maximumTrackTintColor = UIColor.white
         slider.setThumbImage(UIImage(named: "thumb"), for: .normal)
-//        slider.thumbTintColor = UIColor.red
         return slider
     }()
     
@@ -103,6 +103,25 @@ class VideoPlayerView: UIView {
         isPlaying = !isPlaying
     }
     
+    func handleSliderChange() {
+        print(videoSlider.value)
+        
+        if let duration = player?.currentItem?.duration {
+            
+            let totalSeconds = CMTimeGetSeconds(duration)
+            
+            let value = Float64(videoSlider.value) * totalSeconds
+            
+            let seekTime = CMTime(value: Int64(value), timescale: 1)
+            
+            player?.seek(to: seekTime, completionHandler: { (complited) in
+                //do something here later...
+            })
+   
+        }
+ 
+    }
+    
     private func setupPlayerView() {
         let urlString = "https://firebasestorage.googleapis.com/v0/b/gameofchats-762ca.appspot.com/o/message_movies%2F12323439-9729-4941-BA07-2BAE970967C7.mov?alt=media&token=3e37a093-3bc8-410f-84d3-38332af9c726"
         let url = NSURL(string: urlString)
@@ -119,9 +138,19 @@ class VideoPlayerView: UIView {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "currentItem.loadedTimeRanges" {
-           activityIndicator.stopAnimating()
-           pausePlayButton.isHidden = false
+            activityIndicator.stopAnimating()
+            pausePlayButton.isHidden = false
             isPlaying = true
+            
+            if let duration = player?.currentItem?.duration {
+               let seconds = CMTimeGetSeconds(duration)
+               let secondText = Int(seconds) % 60
+               let minuteText = String(format: "%02d", Int(seconds) / 60)
+               videoLengthLabel.text = "\(minuteText):\(secondText)"
+            }
+            
+            
+            
         }
     }
     
